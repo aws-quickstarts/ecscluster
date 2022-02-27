@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+
+  ClusterName:
+    Type: String
+    Default: FargateEcsCluster
+  
+  VpcId:
+    Type: String
+    Default: vpc-02ec0c526a36797a1
+  
+  TechTeamEmail:
+    Type: String
+    Default: gian.hd@gmail.com
+
+Resources:
+
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Ref ClusterName
+      Tags:
+        - Key: TechTeamEmail
+          Value: !Ref TechTeamEmail
+  
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub Sg${ClusterName}
+      GroupDescription: !Sub Sg${ClusterName}
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: "-1"
+          CidrIp: 0.0.0.0/0

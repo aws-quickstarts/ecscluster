@@ -1,5 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Description: Cria um ECS Cluster
+
 Parameters:
 
   ClusterName:
@@ -8,11 +10,10 @@ Parameters:
   
   VpcId:
     Type: String
-    Default: vpc-02ec0c526a36797a1
   
-  TechTeamEmail:
+  Owner:
     Type: String
-    Default: gian.hd@gmail.com
+    Default: tg
 
 Resources:
 
@@ -21,8 +22,8 @@ Resources:
     Properties:
       ClusterName: !Ref ClusterName
       Tags:
-        - Key: TechTeamEmail
-          Value: !Ref TechTeamEmail
+        - Key: Owner
+          Value: !Ref Owner
   
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup

@@ -1,4 +1,4 @@
-# ECS Cluster
+# ecscluster
 
 This project creates:
 - ECS Cluster;

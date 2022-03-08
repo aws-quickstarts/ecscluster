@@ -3,20 +3,18 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Creates an ECS Cluster
 
 Parameters:
-
   ClusterName:
     Type: String
     Default: FargateEcsCluster
-  
+
   VpcId:
     Type: String
-  
+
   Owner:
     Type: String
     Default: tg
 
 Resources:
-
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -24,7 +22,7 @@ Resources:
       Tags:
         - Key: Owner
           Value: !Ref Owner
-  
+
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
